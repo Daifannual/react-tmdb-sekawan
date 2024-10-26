@@ -1,0 +1,56 @@
+Tailwind CSS (Plugin Bebas)
+Fetch Menggunakan Axios
+React Router DOM
+Implementasi Query Parameter (Search)
+Implementasi UseCallback
+Presentational Komponen (Container, View) struktur folder
+Dark Mode (Redux)
+Simpan Data di Reducer (Redux) di list aja
+
+yang harus di buat : 
+Dapat menampilkan list film (get)
+Dapat melakukan search dan filter film (get)
+Dapat melihat detail film (get)
+Dapat memberikan rating pada sebuah film (post)
+Dapat Menampilkan film yang sudah di rating (get)
+
+
+
+Detail Movie API dari TMDB memberikan berbagai informasi lengkap tentang sebuah film. Berikut adalah detail yang diberikan oleh API TMDB saat kamu melakukan permintaan terhadap endpoint https://api.themoviedb.org/3/movie/{movie_id}:
+
+id: ID film di TMDB.
+title: Judul film.
+original_title: Judul asli dari film (sebelum diterjemahkan).
+overview: Sinopsis atau deskripsi singkat dari film.
+release_date: Tanggal rilis film.
+runtime: Durasi film (dalam menit).
+status: Status film (misalnya, "Released", "Post Production").
+vote_average: Rata-rata penilaian film dari pengguna.
+vote_count: Jumlah penilaian dari pengguna.
+genres: Array berisi daftar genre film (misalnya, Action, Comedy).
+backdrop_path: URL gambar backdrop film.
+poster_path: URL gambar poster film.
+production_companies: Array berisi daftar perusahaan produksi.
+production_countries: Array berisi negara-negara di mana film diproduksi.
+spoken_languages: Bahasa yang digunakan dalam film.
+budget: Anggaran yang digunakan untuk produksi film (dalam USD).
+revenue: Pendapatan yang diperoleh dari film (dalam USD).
+tagline: Tagline atau slogan dari film.
+homepage: URL halaman resmi film.
+imdb_id: ID film di IMDb.
+popularity: Popularitas film di TMDB.
+adult: Apakah film memiliki konten dewasa (true/false).
+video: Apakah ini adalah video atau film.
+belongs_to_collection: Informasi tentang koleksi film (jika ada).
+production_companies: Informasi tentang perusahaan produksi film.
+spoken_languages: Bahasa yang digunakan di dalam film.
+release_dates: Tanggal rilis film di berbagai negara.
+credits: Informasi lengkap tentang para pemain (cast) dan kru (crew).
+videos: Trailer atau video terkait dengan film.
+recommendations: Film rekomendasi yang mirip dengan film tersebut.
+reviews: Ulasan yang diberikan oleh pengguna TMDB.
+
+
+List For Digarap: 
+
+-Ratink, related
