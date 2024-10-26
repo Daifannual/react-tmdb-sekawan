@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -9,3 +10,6 @@ Currently, two official plugins are available:
 
 
 Nama : Daifan Nur Amali
+=======
+# react-tmdb-sekawan
+>>>>>>> 54df84fec7e9d328e4d605e4da3f9df5c734f6e6
