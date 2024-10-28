@@ -4,17 +4,23 @@ import { Tooltip } from "@nextui-org/tooltip";
 import Rating from "../../components/ui/Rating";
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
+import Watchlist from "../../components/ui/Watchlist";
 
 const DetailView = ({ movieDetail, related }) => {
-console.log(related)
+  console.log(related);
   if (!movieDetail) {
     return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <span className="loading loading-spinner loading-md"></span>
+      <div className="mx-6 mt-2">
+        <div className="relative mb-28">
+          <div className="w-full h-96 bg-zinc-300 dark:bg-zinc-800 rounded-2xl animate-pulse"></div>
+          <div className="absolute -bottom-20 z-20 m-6 w-2/12 h-80 bg-zinc-300 dark:bg-zinc-800 rounded-2xl animate-pulse mb-8"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent from-70% to-gray-100 dark:to-zinc-900 to-95% rounded-s-xl rounded-e-xl" />
+        </div>
+        <div className="w-1/12 h-10 bg-zinc-300 dark:bg-zinc-800 rounded-2xl animate-pulse mb-3"></div>
+        <div className="w-full h-80 bg-zinc-300 dark:bg-zinc-800 rounded-2xl animate-pulse"></div>
       </div>
     );
   }
-
   return (
     <div className="mx-6 mt-2">
       <div className="relative mb-28">
@@ -50,20 +56,23 @@ console.log(related)
                 </div>
                 <Tooltip
                   key={"bottom"}
-                  placement="bottom"
+                  placement="top"
                   showArrow={true}
                   content="Leave a rating"
                   className="text-zinc-500 dark:text-zinc-400 dark:bg-zinc-800"
                 >
-                  <Rating/>
+                  <Rating />
                 </Tooltip>
+                <Watchlist />
               </div>
 
               <div className="px-3 py-2 mr-6 rounded-xl text-center w-24 text-zinc-600 dark:text-zinc-400">
                 <p className="text-2xl font-extrabold">
                   {movieDetail.vote_average.toFixed(2)}
                 </p>
-                <p className="text-xs font-bold">({movieDetail.vote_count} vote)</p>
+                <p className="text-xs font-bold">
+                  ({movieDetail.vote_count} vote)
+                </p>
               </div>
             </div>
           </div>
@@ -71,7 +80,9 @@ console.log(related)
       </div>
       <DetailTabs movieDetail={movieDetail} />
       <div>
-        <p className="text-xl font-bold mt-2 text-zinc-900 dark:text-white">Related Movies</p>
+        <p className="text-xl font-bold mt-2 text-zinc-900 dark:text-white">
+          Related Movies
+        </p>
         <div className="flex overflow-x-scroll no-scrollbar gap-8">
           {related?.results.slice(0, 20).map((movie) => (
             <div
@@ -79,7 +90,7 @@ console.log(related)
               key={movie.id}
             >
               <Link to={`/detail/${movie.id}`}>
-                <img    
+                <img
                   className="rounded-xl hover:brightness-90 transition-all duration-300"
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}

@@ -5,10 +5,10 @@ import Topbar from "@/components/Topbar";
 const Layout = ({ children }) => {
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar di sebelah kiri */}
+      {/* Kiri konten */}
       <Sidebar />
       
-      {/* Konten halaman di sebelah kanan */}
+      {/* Atas konten*/}
       <div className="flex-1 px-6 bg-gray-100 dark:bg-zinc-900">
       <Topbar />
         {children}

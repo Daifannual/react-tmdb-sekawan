@@ -3,6 +3,7 @@ export const SET_SEARCH = "SET_SEARCH";
 export const SET_RATING = "SET_RATING";
 export const SET_GENRES = "SET_GENRES";
 export const SET_BY_GENRE = "SET_BY_GENRE";
+export const SET_WATCHLIST = "SET_WATCHLIST";
 
 export const NOW_PLAYING = "NOW_PLAYING";
 export const POPULAR = "POPULAR";
@@ -23,6 +24,10 @@ export const setSearch = (payload) => ({
 });
 export const setRating = (payload) => ({
     type: SET_RATING,
+    payload,
+})
+export const setWatchlist = (payload) => ({
+    type: SET_WATCHLIST,
     payload,
 })
 export const setGenres = (payload) => ({

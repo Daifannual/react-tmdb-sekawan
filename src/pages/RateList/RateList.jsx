@@ -46,7 +46,7 @@ const RateList = () => {
 
   return (
     <div>
-      <RateListView ratingList={ratingList} />
+      <RateListView ratingList={Array.isArray(ratingList) ? ratingList : []} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import {
   SET_SEARCH,
   SET_RATING,
   SET_GENRES,
+  SET_WATCHLIST,
   SET_MOVIE_DETAIL,
   MOVIE_VIDEOS,
   RECOMMENDATIONS,
@@ -18,6 +19,7 @@ const initialState = {
   movieDetail: null,
   search: {},
   rating: [],
+  watchlist: [],
   genres: [],
   movieByGenre: [],
   movieVideos: [],
@@ -44,6 +46,11 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         rating: action.payload,
+      };
+    case SET_WATCHLIST:
+      return {
+        ...state,
+        watchlist: action.payload,
       };
 
     case SET_GENRES:

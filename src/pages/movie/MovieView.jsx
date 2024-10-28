@@ -49,15 +49,22 @@ const MovieView = ({ dataToDisplay, genres, onSearchChange, hasSearch }) => {
       </div>
       {hasSearch && (
         <div className="mb-4">
-          {genres.map((genre) => (
-            <Link
-              to={`genre/${genre.id}`}
-              key={genre.id}
-              className="btn btn-sm  bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-700 m-1 rounded-xl focus:bg-zinc-600"
-            >
-              {genre.name}
-            </Link>
-          ))}
+          {genres.length > 0
+            ? genres.map((genre) => (
+                <Link
+                  to={`genre/${genre.id}`}
+                  key={genre.id}
+                  className="btn btn-sm border-none bg-white text-zinc-500 dark:text-zinc-400 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 m-1 rounded-xl focus:bg-zinc-600"
+                >
+                  {genre.name}
+                </Link>
+              ))
+            : Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="btn btn-sm skeleton bg-zinc-300 dark:bg-zinc-700 m-1 rounded-xl h-8 w-16"
+                ></div>
+              ))}
         </div>
       )}
       <div className="flex flex-wrap gap-8 justify-evenly mb-8">
@@ -96,9 +103,7 @@ const MovieView = ({ dataToDisplay, genres, onSearchChange, hasSearch }) => {
           </div>
         ))}
       </div>
-      {dataToDisplay.length < 1 && (
-        <MovieSect/>
-      )}
+      {dataToDisplay.length < 1 && <MovieSect />}
     </div>
   );
 };

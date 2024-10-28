@@ -1,6 +1,6 @@
 // Movie.js
 import React, { useEffect, useCallback, useMemo } from "react";
-import MovieSectView from "./MovieSectView"
+import MovieSectView from "./MovieSectView";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
@@ -27,10 +27,12 @@ const Movie = () => {
   );
 
   const fetchData = useCallback(
-    async (endpoint, action) => {
+    async (endpoint, action, pages = 1) => {
       try {
-        const response = await axios.get(endpoint, { headers });
-        dispatch(action(response.data.results));
+        for (let page = 1; page <= pages; page++) {
+          const response = await axios.get(`${endpoint}?page=${page}`, { headers });
+          dispatch(action(response.data.results));
+        }
       } catch (error) {
         console.error(`Error fetching ${endpoint}:`, error);
       }
@@ -39,10 +41,10 @@ const Movie = () => {
   );
 
   useEffect(() => {
-    fetchData("https://api.themoviedb.org/3/movie/now_playing", setNowPlaying);
-    fetchData("https://api.themoviedb.org/3/movie/popular", setPopular);
-    fetchData("https://api.themoviedb.org/3/movie/upcoming", setUpcoming);
-    fetchData("https://api.themoviedb.org/3/movie/top_rated", setTopRated);
+    fetchData("https://api.themoviedb.org/3/movie/now_playing", setNowPlaying, 2); // Mengambil 2 halaman
+    fetchData("https://api.themoviedb.org/3/movie/popular", setPopular, 2);
+    fetchData("https://api.themoviedb.org/3/movie/upcoming", setUpcoming, 2);
+    fetchData("https://api.themoviedb.org/3/movie/top_rated", setTopRated, 2);
   }, [fetchData]);
 
   return (

@@ -5,6 +5,7 @@ import axios from "axios";
 import { setByGenre } from "../../store/actions/movieAction";
 import { Link } from "react-router-dom";
 import { Star,ChevronLeft } from "lucide-react";
+import { Pagination } from "@nextui-org/pagination";
 
 const MovieGenreView = () => {
   const { id } = useParams();

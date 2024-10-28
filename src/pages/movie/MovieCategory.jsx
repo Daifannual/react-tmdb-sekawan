@@ -1,9 +1,10 @@
 // src/pages/MovieCategory.js
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Star } from "lucide-react";
 import { ChevronLeft } from "lucide-react";
+import { Pagination } from "@nextui-org/react";
 
 const MovieCategory = () => {
   const { category } = useParams();
@@ -11,31 +12,29 @@ const MovieCategory = () => {
     (state) => state.movie
   );
 
-  // Determine the movies to display based on the category
-  let movies;
-  switch (category) {
-    case "now_playing":
-      movies = nowPlaying;
-      break;
-    case "popular":
-      movies = popular;
-      break;
-    case "upcoming":
-      movies = upcoming;
-      break;
-    case "top_rated":
-      movies = topRated;
-      break;
-    default:
-      movies = [];
-  }
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20; // Ubah ini sesuai kebutuhan
+  const moviesList = {
+    now_playing: nowPlaying,
+    popular: popular,
+    upcoming: upcoming,
+    top_rated: topRated,
+  };
+
+  const movies = moviesList[category] || [];
+
+  const totalPages = Math.ceil(movies.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentMovies = movies.slice(startIndex, endIndex);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className="pb-8">
       <div className="flex justify-between items-center mx-6">
         <div className="w-max">
           <p className="font-medium text-zinc-400 dark:text-zinc-500">Category</p>
@@ -54,7 +53,7 @@ const MovieCategory = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-8">
-        {movies?.map((movie) => (
+        {currentMovies.map((movie) => (
           <div
             className="relative w-1/5 my-6 flex-shrink-0 group"
             key={movie.id}

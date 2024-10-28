@@ -9,7 +9,7 @@ const DetailTabs = () => {
   const { images } = useSelector((state) => state.other);
   return (
     <div className="flex w-full flex-col">
-      <Tabs aria-label="Options" variant="light">
+      <Tabs aria-label="Options" variant="solid">
         <Tab key="Overview" title="Overview">
           <Card>
             <CardBody className="p-5">

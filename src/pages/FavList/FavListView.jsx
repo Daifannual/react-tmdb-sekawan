@@ -1,25 +1,51 @@
-import { Link } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Bookmark, Star } from "lucide-react";
 
-const FavListView = () => {
+const FavListView = ({ watchlist }) => {
   return (
     <div>
-      <section>
-        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div class="mx-auto max-w-screen-sm text-center">
-            <h1 class="mb-4 text-7xl font-extrabold lg:text-9xl text-red-600 dark:text-red-500">
-              Sorry
-            </h1>
-            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
-              Page is under construction
-            </p>
-            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-              sorry, this page is still empty :(
-            </p>
-          </div>
+      <p className="text-4xl text-zinc-700 dark:text-zinc-200 font-bold mb-4">Watchlist</p>
+        <div className="flex flex-wrap justify-start gap-12">
+          {watchlist?.map((movie) => (
+            <div
+              className="relative w-full md:w-1/4 lg:w-1/5 my-6 flex-shrink-0 group"
+              key={movie.id}
+            >
+              <Link to={`/detail/${movie.id}`}>
+                <img
+                  className="rounded-xl hover:brightness-90 transition-all duration-300"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <div className="absolute flex justify-between items-center w-full bottom-0 px-2 py-2 rounded-b-xl backdrop-blur-md bg-zinc-800/60 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  <div>
+                    <h1 className="text-sm w-32 font-semibold truncate text-white">
+                      {movie.title}
+                    </h1>
+                    <p className="text-xs font-semibold text-gray-400">
+                      {new Date(movie.release_date).toLocaleDateString(
+                        "en-GB",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        }
+                      )}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="flex py-2 px-2 w-16 rounded-3xl justify-around text-xs backdrop-blur-md bg-zinc-700/40 items-center text-white">
+                      <Star size={12} color="#fff700" />
+                      {movie.vote_average.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
-      </section>
-    </div>
+      </div>
   );
 };
 

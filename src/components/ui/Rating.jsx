@@ -26,7 +26,7 @@ const Rating = forwardRef((props, ref) => {
       );
 
       if (response.data.rated.value) {
-        dispatch(setRating(response.data.rated.value)); // Mengatur rating yang sudah ada
+        dispatch(setRating(response.data.rated.value));
       }
     } catch (error) {
       console.error("Error fetching user rating:", error);
@@ -36,7 +36,7 @@ const Rating = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    fetchUserRating(); // Panggil fungsi untuk fetch rating ketika komponen dimuat
+    fetchUserRating();
   }, [id]);
 
   const handleRatingChange = async (value) => {
@@ -95,7 +95,7 @@ const Rating = forwardRef((props, ref) => {
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="">
       <Toaster />
       <div className="rating rating-sm gap-1">
         <input

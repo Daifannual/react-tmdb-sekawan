@@ -1,14 +1,26 @@
 import { useEffect } from "react";
-import { Switch } from "@nextui-org/react";
-import { SunIcon } from "./assets/SunIcon";
+import { Switch, VisuallyHidden, useSwitch } from "@nextui-org/react";
 import { MoonIcon } from "./assets/MoonIcon";
+import { SunIcon } from "./assets/SunIcon";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../store/actions/themeAction";
 
-const Switcher = () => {
-
-const theme = useSelector((state) => state.theme.theme);
-const dispatch = useDispatch();
+const ThemeSwitch = (props) => {
+  const theme = useSelector((state) => state.theme.theme);
+  const dispatch = useDispatch();
+  
+  const {
+    Component, 
+    slots, 
+    isSelected, 
+    getBaseProps, 
+    getInputProps, 
+    getWrapperProps
+  } = useSwitch({
+    isSelected: theme === "dark", // Menentukan nilai isSelected berdasarkan theme
+    onChange: () => dispatch(toggleTheme()), // Toggle theme saat diubah
+    ...props
+  });
 
   useEffect(() => {
     if (theme === "dark") {
@@ -18,22 +30,32 @@ const dispatch = useDispatch();
     }
   }, [theme]);
 
-// console.log(theme);
-
   return (
-    <Switch
-      size="lg"
-      color="default"
-      thumbIcon={({ isSelected, className }) =>
-        isSelected ? (
-          <SunIcon className={className} />
-        ) : (
-          <MoonIcon className={className} />
-        )
-      }
-      onClick={() => dispatch(toggleTheme())}
-    ></Switch>
+    <div className="flex flex-col gap-2">
+      <Component {...getBaseProps()}>
+        <VisuallyHidden>
+          <input {...getInputProps()} />
+        </VisuallyHidden>
+        <div
+          {...getWrapperProps()}
+          className={slots.wrapper({
+            class: [
+              "w-8 h-8",
+              "flex items-center justify-center",
+              isSelected ? "bg-zinc-200" : "bg-gray-200",
+              "rounded-lg text-zinc-500 hover:bg-default-200",
+            ],
+          })}
+          style={{
+            backgroundColor: isSelected ? "#1e2021" : "#ffffff", // Kuning untuk "on", abu-abu untuk "off"
+            borderColor: "transparent" // Menghilangkan border biru
+          }}
+        >
+          {isSelected ? <MoonIcon /> : <SunIcon />}
+        </div>
+      </Component>
+    </div>
   );
 };
 
-export default Switcher;
+export default ThemeSwitch;
