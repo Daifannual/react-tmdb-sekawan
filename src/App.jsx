@@ -5,7 +5,7 @@ import Layout from "./components/Layout";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { NextUIProvider } from "@nextui-org/react";
-import Detail from "./pages/details/detail";
+import Detail from "./pages/details/Detail";
 import Movie from "./pages/movie/Movie";
 import RateList from "./pages/RateList/RateList";
 import FavList from "./pages/FavList/FavList";
